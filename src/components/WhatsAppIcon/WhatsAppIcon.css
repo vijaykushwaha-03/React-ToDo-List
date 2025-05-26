@@ -1,0 +1,22 @@
+.whatsapp-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366; /* WhatsApp green */
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Makes it circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px; /* Adjust as needed for your "icon" */
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.whatsapp-icon:hover {
+  background-color: #1EBE57; /* Slightly darker green on hover */
+}
