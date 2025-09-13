@@ -1,0 +1,51 @@
+.bottom-nav-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px; /* Same as #root */
+  height: 75px;
+  background-color: var(--color-white);
+  border-top: 1px solid #EAE4DC;
+  box-shadow: var(--shadow-soft);
+  z-index: 100;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  padding-top: var(--space-sm);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-dark-gray);
+  transition: color 0.2s ease-in-out;
+  flex-grow: 1;
+}
+
+.nav-item:hover {
+  color: var(--color-text);
+}
+
+.nav-item .nav-icon {
+  margin-bottom: 2px;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-family: var(--font-family-secondary);
+  font-weight: 500;
+}
+
+/* Style for the active NavLink */
+.nav-item.active {
+  color: var(--color-highlight);
+  font-weight: 600;
+}
