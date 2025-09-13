@@ -1,85 +1,36 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+
+// Temporary Page Placeholders
+// These will be replaced by the actual page components in the next step.
+const HomePage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Home Page</h1><p>Content will go here.</p></div>;
+const CategoriesPage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Categories Page</h1><p>Content will go here.</p></div>;
+const SearchPage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Search Page</h1><p>Content will go here.</p></div>;
+const WishlistPage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Wishlist Page</h1><p>Content will go here.</p></div>;
+const ProfilePage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Profile Page</h1><p>Content will go here.</p></div>;
+const LoginPage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Login Page</h1><p>Content will go here.</p></div>;
+const ProductDetailPage = () => <div style={{ padding: 'var(--space-lg)' }}><h1>Detail Page</h1><p>Content will go here.</p></div>;
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(null);
-
-  const handleAddOrUpdate = (e) => {
-    e.preventDefault();
-    if (input.trim() === '') return alert('Task cannot be empty');
-
-    if (isEditing) {
-      const updatedTasks = [...tasks];
-      updatedTasks[currentIndex].text = input.trim();
-      setTasks(updatedTasks);
-      setIsEditing(false);
-      setCurrentIndex(null);
-    } else {
-      if (tasks.some(task => task.text === input.trim())) return alert('Task already exists');
-      const newTask = { text: input.trim(), completed: false };
-      setTasks([...tasks, newTask]);
-    }
-    setInput('');
-  };
-
-  const handleDelete = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
-    if (isEditing && index === currentIndex) {
-      setIsEditing(false);
-      setInput('');
-    }
-  };
-
-  const handleEdit = (index) => {
-    setInput(tasks[index].text);
-    setIsEditing(true);
-    setCurrentIndex(index);
-  };
-
-  const toggleComplete = (index) => {
-    const updatedTasks = tasks.map((task, i) =>
-      i === index ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-  };
-
   return (
-    
-    <div className="app">
-      <h1>Vijay ToDo App</h1>
-      <h1 className="title">ToDo App</h1>
-      <form onSubmit={handleAddOrUpdate} className="form">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter a task"
-          className="input"
-        />
-        <button type="submit" className="btn-submit">
-          {isEditing ? 'Update' : 'Add'}
-        </button>
-      </form>
+    <Router>
+      <Routes>
+        {/* Routes with the main layout (including bottom nav) */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="categories" element={<CategoriesPage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="wishlist" element={<WishlistPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
 
-      <ul className="task-list">
-        {tasks.map((task, index) => (
-          <li
-            key={index}
-            className={`task ${task.completed ? 'completed' : ''}`}
-          >
-            <span onClick={() => toggleComplete(index)}>{task.text}</span>
-            <div className="actions">
-              <button onClick={() => handleEdit(index)} className="btn edit">✏️</button>
-              <button onClick={() => handleDelete(index)} className="btn delete">🗑️</button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+        {/* Standalone routes (e.g., login, product details) */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
+        {/* We can add more standalone routes here */}
+      </Routes>
+    </Router>
   );
 }
 

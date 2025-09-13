@@ -1,0 +1,31 @@
+:root {
+  /* Color Palette */
+  --color-background: #EAE4DC;
+  --color-card: #F8F7F5;
+  --color-text: #3B3A38;
+  --color-highlight: #C68B59;
+  --color-white: #FFFFFF;
+  --color-light-gray: #E0E0E0;
+  --color-dark-gray: #A0A0A0;
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+
+  /* Typography */
+  --font-family-primary: 'Nunito', 'Inter', sans-serif;
+  --font-family-secondary: 'Inter', sans-serif;
+
+  /* UI Elements */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+}
